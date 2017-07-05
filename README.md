@@ -4,11 +4,11 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
 
 在项目的build文件下添加依赖并Make
 -----------------------------------
-allprojects {
-            repositories {
-                ...
-                maven { url 'https://jitpack.io'} // 添加项
-            }
+        allprojects {
+            repositories {
+                    ...
+                    maven { url 'https://jitpack.io'} // 添加项
+                }
         }
 
 
