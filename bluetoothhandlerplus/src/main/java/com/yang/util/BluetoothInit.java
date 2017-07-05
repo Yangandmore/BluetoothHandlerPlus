@@ -21,7 +21,7 @@ public class BluetoothInit {
         DefaultBluetoothUtil.isBluetootoReadly();
 
         // 初始化线程池大小
-        ExecutorsFactory.getInstance(threadMaxNumber);
+        DefaultExecutorsFactory.getInstance(threadMaxNumber);
 
         // 初始化list集合
         DefaultThreadList.init(threadMaxNumber);

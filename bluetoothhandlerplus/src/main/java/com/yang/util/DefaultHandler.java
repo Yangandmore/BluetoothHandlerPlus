@@ -77,12 +77,14 @@ class DefaultHandler extends Handler{
                     } catch (ExecutorFullException e) {
                         e.printStackTrace();
                         if (bluetoothDateCallBack != null) {
+                            threadS.close();
                             bluetoothDateCallBack.bluetoothConnectCallBack(false, threadS.blueInfo);
                             bluetoothDateCallBack.getThreadList(getBlueInfoList());
                         }
                     } catch (ConnectIsRunningException e) {
                         e.printStackTrace();
                         if (bluetoothDateCallBack != null) {
+                            threadS.close();
                             bluetoothDateCallBack.bluetoothConnectCallBack(false, threadS.blueInfo);
                             bluetoothDateCallBack.getThreadList(getBlueInfoList());
                         }

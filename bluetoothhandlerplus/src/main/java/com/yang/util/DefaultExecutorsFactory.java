@@ -8,29 +8,29 @@ import java.util.concurrent.Executors;
  * 线程池
  */
 
-class ExecutorsFactory {
+class DefaultExecutorsFactory {
 
     private ExecutorService executorService;
-    private static ExecutorsFactory executorsFactory;
+    private static DefaultExecutorsFactory executorsFactory;
     private static int maxSize;
 
-    private ExecutorsFactory(int maxSize) {
-        ExecutorsFactory.maxSize = maxSize;
+    private DefaultExecutorsFactory(int maxSize) {
+        DefaultExecutorsFactory.maxSize = maxSize;
         executorService = Executors.newFixedThreadPool(maxSize);
     }
 
-    public static ExecutorsFactory getInstance() {
-        synchronized (ExecutorsFactory.class) {
+    public static DefaultExecutorsFactory getInstance() {
+        synchronized (DefaultExecutorsFactory.class) {
             if (executorsFactory == null)
-                executorsFactory = new ExecutorsFactory(maxSize);
+                executorsFactory = new DefaultExecutorsFactory(maxSize);
         }
         return executorsFactory;
     }
 
-    public static ExecutorsFactory getInstance(int maxSize) {
-        synchronized (ExecutorsFactory.class) {
+    public static DefaultExecutorsFactory getInstance(int maxSize) {
+        synchronized (DefaultExecutorsFactory.class) {
             if (executorsFactory == null)
-                executorsFactory = new ExecutorsFactory(maxSize);
+                executorsFactory = new DefaultExecutorsFactory(maxSize);
         }
         return executorsFactory;
     }

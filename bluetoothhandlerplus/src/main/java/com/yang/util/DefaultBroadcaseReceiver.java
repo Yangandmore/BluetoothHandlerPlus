@@ -33,6 +33,10 @@ class DefaultBroadcaseReceiver extends BroadcastReceiver {
 
                     break;
                 case BluetoothAdapter.STATE_TURNING_OFF:
+                    // 关闭连接
+                    DefaultThreadList.getInstance().removeAll();
+                    DefaultExecutorsFactory.getInstance().close();
+
                     break;
                 case BluetoothAdapter.STATE_OFF:
                     // 蓝牙关闭

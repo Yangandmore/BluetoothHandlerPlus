@@ -88,7 +88,7 @@ public class BluetoothUtil {
         // 开启线程
         if (DefaultGlobalConstants.defaultHandler.bluetoothDateCallBack == null)
             DefaultGlobalConstants.defaultHandler.setBluetoothDateCallBack(bluetoothDateCallBack);
-        ExecutorsFactory.getInstance().addThread(new DefaultThread(device, blueInfo));
+        DefaultExecutorsFactory.getInstance().addThread(new DefaultThread(device, blueInfo));
 
     }
 
@@ -112,7 +112,7 @@ public class BluetoothUtil {
     // 关闭连接
     public static void closeOver() {
         DefaultThreadList.getInstance().removeAll();
-        ExecutorsFactory.getInstance().close();
+        DefaultExecutorsFactory.getInstance().close();
     }
 
 }
