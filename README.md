@@ -67,9 +67,20 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
             }
         });
 
-### 4.在需要搜索的地方开启蓝牙搜索及蓝牙搜索关闭的地方添加相应功能,在搜索开启状态返回true的同时也会返回相应的蓝牙对象,其中包含他的名字和地址.当然也可以手动关闭蓝牙搜索功能.
+### 4.可以得到手机已配对过的蓝牙对象列表。也在需要搜索的地方开启蓝牙搜索及蓝牙搜索关闭的地方添加相应功能,在搜索开启状态返回true的同时也会返回相应的蓝牙对象,其中包含他的名字和地址.当然也可以手动关闭蓝牙搜索功能.
 
-         try {
+        // 得到手机已配对过的蓝牙对象列表
+        try {
+            topList.addAll(BluetoothUtil.getBondedDevices());
+        } catch (BluetoothSupportedException e) {
+            e.printStackTrace();
+        } catch (BluetoothSwitchCloseException e) {
+            e.printStackTrace();
+        }
+
+
+        // 蓝牙的搜索及蓝牙搜索结束的状态回调
+        try {
             BluetoothUtil.openSearchBluetooth(new BluetoothSearchCallBack() {
                 @Override
                     public void searchStateAndDate(boolean flag, BlueInfo blueInfo) {
@@ -82,13 +93,17 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
                         }
                     }
             });
-         } catch (BluetoothSupportedException e) {
+        } catch (BluetoothSupportedException e) {
             e.printStackTrace();
             // 设备不支持蓝牙功能
-         } catch (BluetoothSwitchCloseException e) {
+        } catch (BluetoothSwitchCloseException e) {
             e.printStackTrace();
             // 蓝牙功能未打开
-         }
+        }
+
+
+        // 关闭搜索功能
+        closeSearchBluetooth();
 
 ### 5.开始对蓝牙的连接通信,返回的数据以原始16进制数据读取并传递,当然也可以手动断开蓝牙连接,一般情况下一定要及时关闭蓝牙连接.此时需要处理一些异常情况，如线程池已满、蓝牙关闭等.
         try {
@@ -117,23 +132,24 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
                     // 得到此时已连接的所有蓝牙对象
 
                     ...
-                });
-            } catch (BluetoothSupportedException e) {
-                e.printStackTrace();
-                // 设备不支持蓝牙功能
-            } catch (ExecutorFullException e) {
-                e.printStackTrace();
-                // 线程池已满
-            } catch (BluetoothSwitchCloseException e) {
-                e.printStackTrace();
-                // 蓝牙功能未打开
-            } catch (InputIncompleteException e) {
-                e.printStackTrace();
-                // 数据不全
-            } catch (ConnectIsRunningException e) {
-                e.printStackTrace();
-                // 该连接已存在
-            }
+                }
+            });
+        } catch (BluetoothSupportedException e) {
+            e.printStackTrace();
+            // 设备不支持蓝牙功能
+        } catch (ExecutorFullException e) {
+            e.printStackTrace();
+            // 线程池已满
+        } catch (BluetoothSwitchCloseException e) {
+            e.printStackTrace();
+            // 蓝牙功能未打开
+        } catch (InputIncompleteException e) {
+            e.printStackTrace();
+            // 数据不全
+        } catch (ConnectIsRunningException e) {
+            e.printStackTrace();
+            // 该连接已存在
+        }
 
 ### 6.也可以使用手动关闭连接来断开连接，这里需要添加选择的蓝牙对象，并对其进行异常处理.并提供关闭所有连接的功能.
         try {
