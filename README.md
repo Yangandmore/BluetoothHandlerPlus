@@ -14,9 +14,15 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
 
         dependencies {
             ...
-            compile 'com.github.Yangandmore:BluetoothHandlerPlus:V1.0' // 添加项
+            compile 'com.github.Yangandmore:BluetoothHandlerPlus:V2.0' // 添加项
         }
 
+
+###版本说明:
+    目前版本：
+    V2.0:增加 try-catch 功能
+    旧版:
+    V1.0:基本功能
 
 
 
