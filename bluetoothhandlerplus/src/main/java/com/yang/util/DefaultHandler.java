@@ -40,7 +40,6 @@ class DefaultHandler extends Handler{
                     // 蓝牙打开 刷新
                     if (bluetoothSwitchCallBack != null)
                         bluetoothSwitchCallBack.bluetoothSwitch(true);
-                    DefaultGlobalConstants.bluetoothSwitch = true;
                     break;
                 case DefaultGlobalConstants.HandlerState.BLUETOOTH_SWITCH_CLOSE:
                     // 蓝牙关闭 保护
@@ -51,7 +50,6 @@ class DefaultHandler extends Handler{
                         bluetoothSwitchCallBack.bluetoothSwitch(false);
                         bluetoothDateCallBack.getThreadList(getBlueInfoList());
                     }
-                    DefaultGlobalConstants.bluetoothSwitch = false;
                     break;
                 case DefaultGlobalConstants.HandlerState.BLUETOOTH_SEARCH_OPEN:
                     // 搜索开始

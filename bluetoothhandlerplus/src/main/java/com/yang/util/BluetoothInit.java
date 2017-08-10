@@ -18,7 +18,6 @@ public class BluetoothInit {
         // 初始化handler
         if (DefaultGlobalConstants.defaultHandler == null)
             DefaultGlobalConstants.defaultHandler = new DefaultHandler();
-        DefaultBluetoothUtil.isBluetootoReadly();
 
         // 初始化线程池大小
         DefaultExecutorsFactory.getInstance(threadMaxNumber);
