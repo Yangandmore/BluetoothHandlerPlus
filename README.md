@@ -62,18 +62,27 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
         });
 
 ### 4.在需要搜索的地方开启蓝牙搜索及蓝牙搜索关闭的地方添加相应功能,在搜索开启状态返回true的同时也会返回相应的蓝牙对象,其中包含他的名字和地址.当然也可以手动关闭蓝牙搜索功能.
-        BluetoothUtil.openSearchBluetooth(new BluetoothSearchCallBack() {
-            @Override
-            public void searchStateAndDate(boolean flag, BlueInfo blueInfo) {
-                if (flag) {
-                    // 得到搜索的蓝牙对象，并进行处理
-                    bottomList.add(blueInfo);
-                    bottomAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(ListActivity.this, "搜索结束", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
+         try {
+            BluetoothUtil.openSearchBluetooth(new BluetoothSearchCallBack() {
+                @Override
+                    public void searchStateAndDate(boolean flag, BlueInfo blueInfo) {
+                        if (flag) {
+                            // 得到搜索的蓝牙对象，并进行处理
+                             bottomList.add(blueInfo);
+                             bottomAdapter.notifyDataSetChanged();
+                        } else {
+                             Toast.makeText(ListActivity.this, "搜索结束", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            });
+         } catch (BluetoothSupportedException e) {
+            e.printStackTrace();
+            // 设备不支持蓝牙功能
+         } catch (BluetoothSwitchCloseException e) {
+            e.printStackTrace();
+            // 蓝牙功能未打开
+         }
 
 ### 5.开始对蓝牙的连接通信,返回的数据以原始16进制数据读取并传递,当然也可以手动断开蓝牙连接,一般情况下一定要及时关闭蓝牙连接.此时需要处理一些异常情况，如线程池已满、蓝牙关闭等.
         try {
@@ -103,14 +112,18 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
 
                     ...
                 });
+            } catch (BluetoothSupportedException e) {
+                e.printStackTrace();
+                // 设备不支持蓝牙功能
             } catch (ExecutorFullException e) {
                 e.printStackTrace();
                 // 线程池已满
             } catch (BluetoothSwitchCloseException e) {
                 e.printStackTrace();
-                // 蓝牙已关闭
+                // 蓝牙功能未打开
             } catch (InputIncompleteException e) {
                 e.printStackTrace();
+                // 数据不全
             } catch (ConnectIsRunningException e) {
                 e.printStackTrace();
                 // 该连接已存在
