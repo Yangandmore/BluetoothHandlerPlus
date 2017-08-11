@@ -25,6 +25,7 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
         }
 ```
 
+[![](https://jitpack.io/v/Yangandmore/BluetoothHandlerPlus.svg)](https://jitpack.io/#Yangandmore/BluetoothHandlerPlus)
 
 ### 版本说明:
     目前版本：
