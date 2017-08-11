@@ -2,6 +2,12 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
 ===================================
 说明：用于连接设备蓝牙并发送或接收AT指令,其中已添加功能权限和蓝牙状态等广播接收，只需在回调接口中处理即可，该连接可一对多设备连接并数据传递.
 
+
+这里还有用于单连接的应用的蓝牙RFCOMM通信依赖
+-----------------------------------
+[https://github.com/Yangandmore/BluetoothHandler](https://github.com/Yangandmore/BluetoothHandler)
+
+
 在项目的build文件下添加依赖并Make
 -----------------------------------
         allprojects {
@@ -18,7 +24,8 @@ BluetoothHandlerPlus（非低频蓝牙RFCOMM通信）（可连接多台设备并
         }
 
 
-### 版本说明:
+版本说明:
+-----------------------------------
     目前版本：
     V2.0:增加 try-catch 功能
     旧版:
